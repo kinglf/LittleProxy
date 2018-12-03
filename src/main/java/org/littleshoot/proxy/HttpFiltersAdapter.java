@@ -4,6 +4,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.http.HttpObject;
 import io.netty.handler.codec.http.HttpRequest;
 import io.netty.handler.codec.http.HttpResponse;
+import org.littleshoot.proxy.impl.ProxyToServerConnection;
 
 import java.net.InetSocketAddress;
 
@@ -102,5 +103,17 @@ public class HttpFiltersAdapter implements HttpFilters {
 
     @Override
     public void proxyToServerConnectionSucceeded(ChannelHandlerContext serverCtx) {
+    }
+
+    /**
+     * {@link ProxyToServerConnection} line-693
+     * 当请求返回代理不为2xx时,则触发
+     *
+     * @param request
+     * @param proxy
+     */
+    @Override
+    public void proxyToServerConnectionFailed(HttpRequest request, ChainedProxy proxy) {
+
     }
 }

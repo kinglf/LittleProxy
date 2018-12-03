@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.littleshoot.proxy.extras.SelfSignedSslEngineSource;
 import org.littleshoot.proxy.impl.DefaultHttpProxyServer;
+import org.littleshoot.proxy.impl.ProxyToServerConnection;
 import org.littleshoot.proxy.test.HttpClientUtil;
 import org.mockserver.integration.ClientAndServer;
 import org.mockserver.matchers.Times;
@@ -905,6 +906,18 @@ public class HttpFilterTest {
         @Override
         public void proxyToServerConnectionSucceeded(ChannelHandlerContext serverCtx) {
             proxyToServerConnectionSucceeded.set(true);
+        }
+
+        /**
+         * {@link ProxyToServerConnection} line-693
+         * 当请求返回代理不为2xx时,则触发
+         *
+         * @param request
+         * @param proxy
+         */
+        @Override
+        public void proxyToServerConnectionFailed(HttpRequest request, ChainedProxy proxy) {
+
         }
 
         @Override

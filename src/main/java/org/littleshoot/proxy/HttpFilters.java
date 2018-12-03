@@ -208,4 +208,12 @@ public interface HttpFilters {
      */
     void proxyToServerConnectionSucceeded(ChannelHandlerContext serverCtx);
 
+    /**
+     * {@link org.littleshoot.proxy.impl.ProxyToServerConnection} line-693
+     * 当请求返回代理不为2xx时,则触发
+     * @param request
+     * @param proxy
+     */
+    void proxyToServerConnectionFailed(HttpRequest request,ChainedProxy proxy);
+
 }
